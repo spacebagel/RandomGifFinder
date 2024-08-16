@@ -1,0 +1,33 @@
+﻿<Window x:Class="RandomPicFind.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RandomPicFind.Windows"
+        xmlns:gif="clr-namespace:XamlAnimatedGif;assembly=XamlAnimatedGif"
+        mc:Ignorable="d"
+        Title="Random GIF Finder" MinHeight="450" MinWidth="400" 
+        Height="450" Width="400" Icon="/Images/dice.png" ResizeMode="NoResize">
+
+    <Grid Margin="10">
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Label Content="File Types:"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button IsEnabled="{Binding GIFBtnEnable}" Style="{DynamicResource SmallButtonStyle}" Content="GIF" Command="{Binding SaveGifCommand}"/>
+                <Button IsEnabled="{Binding WebmBtnEnable}" Style="{DynamicResource SmallButtonStyle}" Content="WEBM" Command="{Binding SaveWebmCommand}"/>
+                <Button IsEnabled="{Binding MP4BtnEnable}" Style="{DynamicResource SmallButtonStyle}" Content="MP4" Command="{Binding SaveMp4Command}"/>
+            </StackPanel>
+            <Label Content="Loading..." Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+            <Image Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" gif:AnimationBehavior.SourceUri="{Binding ImageUrl}" Stretch="Fill"/>
+
+            <TextBlock Grid.Row="2" Margin="10 10" x:Name="tbGIFDescription" Text="{Binding DescriptionText, Mode=TwoWay}" TextWrapping="Wrap"  VerticalAlignment="Center"/>
+            <Button Grid.Row="3" Content="FIND" Style="{StaticResource FindButtonStyle}" Command="{Binding FindCommand}"/>
+        </Grid>
+    </Grid>
+</Window>
