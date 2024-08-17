@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Windows;
 using System.Windows.Input;
+using System.Configuration;
 
 namespace RandomPicFind.ViewModels;
 
@@ -14,7 +15,7 @@ public class MainViewModel : INotifyPropertyChanged
     private string imageUrl = "https://c.tenor.com/4k4PssZTZTAAAAAC/finding-nemo-darla.gif", descriptionText = "Welcome! Tap to FIND button...";
     private bool webmBtnEnable = false, mp4BtnEnable = false, gifBtnEnable = false;
     private string? webmLink = null, mp4Link = null, gifLink = null;
-
+    private string? TenorAPIKey = ConfigurationManager.AppSettings.Get("TenorAPI");
     public ICommand FindCommand { get; }
     public ICommand SaveGifCommand { get; }
     public ICommand SaveWebmCommand { get; }
@@ -70,11 +71,11 @@ public class MainViewModel : INotifyPropertyChanged
 
                 WordObject wordObject = new();
                 bool go = true;
-
+                
                 while (go)
                 {
                     string word = await wordObject.FindRandomWordAsync();
-                    string response = await client.GetStringAsync(@$"https://g.tenor.com/v1/search?q={word}&key=YOUR_API_KEY&limit=1000");
+                    string response = await client.GetStringAsync(@$"https://g.tenor.com/v1/search?q={word}&key={TenorAPIKey}&limit=1000");
                     Rootobject? context = JsonConvert.DeserializeObject<Rootobject>(response);
 
                     if (context?.results.Length > 0)
@@ -101,7 +102,7 @@ public class MainViewModel : INotifyPropertyChanged
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Error text: ", ex.Message);
+            MessageBox.Show("Error text: " + ex.Message, "ERROR");
         }
     }
 
