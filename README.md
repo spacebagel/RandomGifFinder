@@ -1,11 +1,12 @@
 # 🎞️ Random Gif Finder
 This program allows to search for and download random GIFs in GIF, WEBM, and MP4 formats. By using the Tenor API.
 
-## ▶️ How to Build
+## ▶️ How to Run
 1. Get a Tenor API key: https://tenor.com/gifapi/documentation
-2. Paste to RandomPicFind.ViewModels -> MainViewModel class -> ExecutedLoginCommand method -> YOUR_API_KEY:
+2. Paste to .config file:
 
-![YOUR_API_KEY](https://github.com/user-attachments/assets/9920ee48-60e3-42e3-928d-ae5cef04dab1)
+![изображение](https://github.com/user-attachments/assets/7ab5295c-e6a3-41e0-aded-0c253c3fcaa7)
+
 
 ## 🖼️ Screenshots
 
